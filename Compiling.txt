@@ -1,0 +1,9 @@
+emcc -O3 c_code.c -o primeNo_C_Code.html -s EXPORTED_RUNTIME_METHODS="['ccall','cwrap']" -s EXPORTED_FUNCTIONS="['_findPrimes']" -s INVOKE_RUN=0
+
+
+swift \
+  --target=wasm32 \
+  -emit-llvm \
+  -c \
+  -S \
+  hello.swift

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wasm Comparison</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <section>
+        <div>
+            <h1>Wasm Comparison</h1>
+        </div>
+        <div>
+            <input type="number" id="prime" placeholder="Enter the number"/>
+            <button id="startFunction" onclick="startButtonClicked()">Start</button>
+        </div>
+        <div id="results">
+            <table>
+                <tr>
+                    <th>Language</th>
+                    <th>Speed</th>
+                </tr>
+                <tr>
+                    <td>JavaScript</td>
+                    <td id="JavaScriptSpeed"></td>
+                </tr>
+                <tr>
+                    <td>C</td>
+                    <td id="CSpeed"></td>
+                </tr>
+                <tr>
+                    <td>Rust</td>
+                    <td id="RustSpeed"></td>
+                </tr>
+                <tr>
+                    <td>Swift</td>
+                    <td id="SwiftSpeed"></td>
+                </tr>
+                <tr>
+                    <td>Python</td>
+                    <td id="PythonSpeed"></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <script type="text/javascript" src="script.js"> </script>
+    <script type="text/javascript" src="javascript_code.js"></script>
+    <script type="text/javascript" src="primeNo_C_Code.js"></script>
+</body>
+</html>

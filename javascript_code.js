@@ -1,6 +1,5 @@
 const findPrimes = (number) => {
     let primeNumbers = 0;
-    console.time("Execution")
     for (let i = 2; i <= number; i++) {
         let isPrime = true;
         for (let j = 2; j < i; j++) {
@@ -12,8 +11,5 @@ const findPrimes = (number) => {
           primeNumbers++;
         }
     }
-    console.timeEnd("Execution");
-    console.log("Function complete, Numbers = " + primeNumbers);
+    return primeNumbers;
 }
-
-findPrimes(2000)
