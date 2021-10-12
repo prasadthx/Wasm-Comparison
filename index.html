@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wasm Comparison</title>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.18.1/full/pyodide.js"></script>
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
@@ -35,12 +36,16 @@
                     <td id="RustSpeed"></td>
                 </tr>
                 <tr>
+                    <td>Java</td>
+                    <td id="JavaSpeed"></td>
+                </tr>
+                <tr>
                     <td>Swift</td>
                     <td id="SwiftSpeed"></td>
                 </tr>
                 <tr>
-                    <td>Python</td>
-                    <td id="PythonSpeed"></td>
+                    <td>Go</td>
+                    <td id="GoSpeed"></td>
                 </tr>
             </table>
         </div>
@@ -48,5 +53,6 @@
     <script type="text/javascript" src="script.js"> </script>
     <script type="text/javascript" src="javascript_code.js"></script>
     <script type="text/javascript" src="primeNo_C_Code.js"></script>
+    <script type="text/javascript" src="go_wasm_exec.js"></script>
 </body>
 </html>

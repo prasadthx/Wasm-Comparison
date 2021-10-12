@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Testing wasm</title>
+
+    <style>
+        * {
+            padding: 20px;
+            font-size: 28pt;
+        }
+    </style>
+</head>
+<body>
+    <div id="resultBox"></div>
+<!--    <script src="javaCode.wasm.js"></script>-->
+    <script>
+        var resultBox = document.getElementById('resultBox');
+
+        var importObject = {
+            imports: { imported_func: arg => console.log(arg) }
+        };
+
+        fetch('./javaCode.wasm').then(response =>
+            response.arrayBuffer()
+        ).then(bytes =>
+            WebAssembly.instantiate(bytes, importObject)
+        ).then(results => {
+            console.log(results.instance.exports.findPrimes(2000));
+            //resultBox.innerHTML = findPrimes(2000);
+        });
+    </script>
+</body>
+</html>

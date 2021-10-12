@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' } // for snapshot of the API
+}
+dependencies {
+    // https://mvnrepository.com/artifact/de.inetsoftware/jwebassembly-api
+    implementation group: 'de.inetsoftware', name: 'jwebassembly-api', version: '0.3'
+    // https://mvnrepository.com/artifact/de.inetsoftware/jwebassembly-compiler
+    implementation group: 'de.inetsoftware', name: 'jwebassembly-compiler', version: '0.3'
+
+}
+
+test {
+    useJUnitPlatform()
+}

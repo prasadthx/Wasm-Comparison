@@ -7,3 +7,6 @@ swift \
   -c \
   -S \
   hello.swift
+
+
+tinygo build -o goCode.wasm -target wasm ./main.go

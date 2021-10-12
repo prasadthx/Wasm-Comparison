@@ -1,21 +1,14 @@
-import timeit
-import time
+def findPrimes(number):
+    primeNumbers = 0
+    for i in range(2,number+1,1):
+        isPrime=True
+        for j in range(2,i,1):
+            if((i%j)==0):
+                isPrime=False
+                break
+        if(isPrime):
+            primeNumbers+=1
+    return primeNumbers
 
-start = time.time()
+findPrimes(20000)
 
-
-print("Starting Execution")
-n=int(input("Enter the number:  "))
-ans=0;
-for i in range(2,n+1,1):
-    isPrime=True
-    for j in range(2,i,1):
-        if((i%j)==0):
-            isPrime=False
-            break
-    if(isPrime):
-        ans+=1
-print("Total primes is : ",ans)
-end = time.time()
-k=end - start
-print("Ellapse Time is " ,k)
