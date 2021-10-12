@@ -57,6 +57,19 @@ const usingJava = (value) => {
       }).catch(console.error);
 }
 
+const usingSwift = (value) => {
+  fetch('rustCode.wasm').then(response =>
+    response.arrayBuffer()
+  ).then(bytes => WebAssembly.instantiate(bytes)).then(results => {
+    instance = results.instance;
+    let start = window.performance.now();
+    instance.exports.find_primes(value);
+    let end = window.performance.now();
+    let time = end - start;
+    setValue(time, "SwiftSpeed");
+  }).catch(console.error);
+}
+
 const usingGo = (value) => {
     const go = new Go();
     const WASM_FILE = 'goCode.wasm';
@@ -85,5 +98,6 @@ const startButtonClicked = () => {
     usingC(inputNumberFieldValue);
     usingRust(inputNumberFieldValue);
     usingJava(inputNumberFieldValue);
+    usingSwift(inputNumberFieldValue);
     usingGo(inputNumberFieldValue);
 }
