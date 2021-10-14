@@ -1,0 +1,20 @@
+{
+  "name": "wasm-comparison",
+  "version": "1.0.0",
+  "description": "Comparing speed of simple prime number algorithm between Wasm and JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "Prasad Zore",
+  "license": "ISC",
+  "dependencies": {
+    "@wasmer/wasi": "^0.12.0",
+    "@wasmer/wasmfs": "^0.12.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.13",
+    "requirejs": "^2.3.6",
+    "util": "^0.12.4"
+  }
+}

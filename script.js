@@ -1,9 +1,13 @@
+import { executeSwiftWasm } from "./swiftScript.js";
+
 const inputNumberField = document.getElementById("prime");
 let inputNumberFieldValue = 0;
 
 inputNumberField.addEventListener('change', () => {
     inputNumberFieldValue = inputNumberField.value;
 });
+
+const startbutton = document.getElementById("startFunction");
 
 const usingJavaScript = (value) => {
     let start = window.performance.now();
@@ -17,7 +21,7 @@ const usingC = (value) => {
     fetch('primeNo_C_Code.wasm').then(response =>
         response.arrayBuffer()
       ).then(bytes => WebAssembly.instantiate(bytes)).then(results => {
-        instance = results.instance;
+        let instance = results.instance;
         let start = window.performance.now();
         Module._findPrimes(value);
         let end = window.performance.now();
@@ -27,10 +31,10 @@ const usingC = (value) => {
 }
 
 const usingRust = (value) => {
-    fetch('rustCode.wasm').then(response =>
+    fetch('rustWasm.wasm').then(response =>
         response.arrayBuffer()
       ).then(bytes => WebAssembly.instantiate(bytes)).then(results => {
-        instance = results.instance;
+        let instance = results.instance;
         let start = window.performance.now();
         instance.exports.find_primes(value);
         let end = window.performance.now();
@@ -50,24 +54,16 @@ const usingJava = (value) => {
         WebAssembly.instantiate(bytes, importObject)
     ).then(results => {
         let start = window.performance.now();
-        console.log(results.instance.exports.findPrimes(2000));
+        console.log(results.instance.exports.findPrimes(value));
         let end = window.performance.now();
         let time = end - start;
         setValue(time, "JavaSpeed");
       }).catch(console.error);
 }
 
-const usingSwift = (value) => {
-  fetch('rustCode.wasm').then(response =>
-    response.arrayBuffer()
-  ).then(bytes => WebAssembly.instantiate(bytes)).then(results => {
-    instance = results.instance;
-    let start = window.performance.now();
-    instance.exports.find_primes(value);
-    let end = window.performance.now();
-    let time = end - start;
+const usingSwift = async (value) => {
+    const {result, time} = await executeSwiftWasm(value);
     setValue(time, "SwiftSpeed");
-  }).catch(console.error);
 }
 
 const usingGo = (value) => {
@@ -93,11 +89,14 @@ const setValue = (value, id) => {
     element.innerText = value + " ms";
 } 
 
-const startButtonClicked = () => {
+const startButtonClicked = async () => {
     usingJavaScript(inputNumberFieldValue);
     usingC(inputNumberFieldValue);
     usingRust(inputNumberFieldValue);
     usingJava(inputNumberFieldValue);
-    usingSwift(inputNumberFieldValue);
+    await usingSwift(inputNumberFieldValue);
     usingGo(inputNumberFieldValue);
 }
+
+
+startbutton.addEventListener('click', await startButtonClicked);

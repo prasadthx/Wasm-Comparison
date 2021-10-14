@@ -1,5 +1,6 @@
-func findPrimes(number: Int) -> Int{
-	var primeNumbers : Int = 0;
+@_cdecl("find_primes")
+func find_primes(_ number: Int) -> Int {
+    var primeNumbers : Int = 0;
     for i in 2...number {
         var isPrime = true;
         for j in 2..<i {
