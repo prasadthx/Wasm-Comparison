@@ -59,7 +59,7 @@ const usingJava = (value) => {
 
 const usingSwift = async (value) => {
     const {result, time} = await executeSwiftWasm(value);
-    setValue(time, "SwiftSpeed");
+    setValue(`${time} ms`, "SwiftSpeed");
     setValue(result, "SwiftResults");
 }
 
