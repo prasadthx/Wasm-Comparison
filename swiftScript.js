@@ -14,7 +14,7 @@ const wasmFS = new WasmFs();
 
 export const executeSwiftWasm = async (value) => {
   let returnObject = {"result": -1, "time": -1};
-  let response = await fetch('swiftOs.wasm');
+  let response = await fetch('swiftO3.wasm');
   response = await response.arrayBuffer();
 
   const { instance } = await WebAssembly.instantiate(response, {
