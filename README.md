@@ -10,7 +10,7 @@
     Swift
     Go
     
-## For running locally, run through a local servereg:- 
+## For running locally, run through a local server eg:- 
 ```python -m http.server 8000 --bind 127.0.0.1```
     
 ## Usage:-
