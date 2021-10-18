@@ -1,4 +1,5 @@
 import { executeSwiftWasm } from "./swiftScript.js";
+import { findPrimes } from "./javascript_code.js";
 
 const inputNumberField = document.getElementById("prime");
 let inputNumberFieldValue = 0;
@@ -10,6 +11,7 @@ inputNumberField.addEventListener('change', () => {
 const startbutton = document.getElementById("startFunction");
 
 const usingJavaScript = (value) => {
+    //console.log(findPrimes());
     const start = window.performance.now();
     const result = findPrimes(value);
     const end = window.performance.now();
@@ -58,9 +60,11 @@ const usingJava = (value) => {
 }
 
 const usingSwift = async (value) => {
-    const {result, time} = await executeSwiftWasm(value);
-    setValue(`${time} ms`, "SwiftSpeed");
-    setValue(result, "SwiftResults");
+    executeSwiftWasm(value).then( (results) => {
+        const {result, time} = results;
+        setValue(`${time} ms`, "SwiftSpeed");
+        setValue(result, "SwiftResults");
+    })
 }
 
 const usingGo = (value) => {
@@ -87,14 +91,20 @@ const setValue = (value, id) => {
     element.innerText = value;
 } 
 
-const startButtonClicked = async () => {
+async function startButtonClicked(value){
     usingJavaScript(inputNumberFieldValue);
     usingC(inputNumberFieldValue);
     usingRust(inputNumberFieldValue);
     usingJava(inputNumberFieldValue);
-    await usingSwift(inputNumberFieldValue);
+    try {
+        await usingSwift(inputNumberFieldValue);
+    } catch (error) {
+        console.log(error);
+    }
+    
     usingGo(inputNumberFieldValue);
 }
 
 
-startbutton.addEventListener('click', await startButtonClicked);
+
+startbutton.addEventListener("click", async () => await startButtonClicked());
