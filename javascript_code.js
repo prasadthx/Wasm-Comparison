@@ -1,4 +1,4 @@
-const findPrimes = (number) => {
+export const findPrimes = (number) => {
     let primeNumbers = 0;
     for (let i = 2; i <= number; i++) {
         let isPrime = true;
